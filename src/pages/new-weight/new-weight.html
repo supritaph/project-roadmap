@@ -1,0 +1,30 @@
+
+<ion-header>
+    <ion-navbar>
+      <!-- <ion-col col-2>
+        <button ion-button menuToggle auto-close="true">
+            <ion-icon name="menu" >    
+            </ion-icon>
+          </button>
+        </ion-col> -->
+      
+      <ion-title>sortItems</ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content padding> 
+      <!-- <ion-range min="0" max="120" pin="true" [(ngModel)]="myValue" (ionChange)="restrictValue()" debounce="1"></ion-range> -->
+      
+
+      <ion-item>
+          <ion-range dualKnobs="true" pin="true"  min={{this.productService.minweight}} [max]="this.productService.maxWeight" 
+          (ionChange)="noteChanged($event, rangeObject)"
+           [(ngModel)]="rangeObject" color="secondary">
+              <ion-label range-left>${{this.productService.minweight}}
+                  
+                  </ion-label>
+              <ion-label range-right>${{ this.productService.maxWeight}}</ion-label>
+</ion-range> 
+        </ion-item>     
+          <button ion-button type="submit" expand="full" color="primary" (click)="onSubmit()">applynow</button>
+          </ion-content>

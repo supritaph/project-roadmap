@@ -1,0 +1,7 @@
+{
+  "name": "final-roadmap",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}

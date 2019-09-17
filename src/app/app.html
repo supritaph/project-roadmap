@@ -1,0 +1,81 @@
+
+<!-- <ion-split-pane when="lg" class="split-pane-md.split-pane-visible>.split-pane-side"> -->
+<ion-menu [content]="mycontent">
+
+        <ion-header>
+                <ion-toolbar>
+                  <ion-title>
+                    product search
+                  </ion-title>
+                </ion-toolbar>
+              </ion-header>
+        <ion-content>
+                <ion-list>
+                        <ion-menu-toggle>
+                          <ion-item lines="none" (click)="SearchItem()" >
+                            <ion-icon name="business" slot="start"></ion-icon>
+                            <ion-label>Search Items</ion-label>
+                          </ion-item>
+                        </ion-menu-toggle>
+
+                        <ion-menu-toggle>
+                            <ion-item lines="none" (click)="onspeech()" >
+                              <ion-icon name="business" slot="start"></ion-icon>
+                              <ion-label>speech</ion-label>
+                            </ion-item>
+                          </ion-menu-toggle>
+                        
+                        <ion-menu-toggle>
+                          <ion-item lines="none" (click)="onLogout()" button>
+                            <ion-icon name="exit" slot="start"></ion-icon>
+                            <ion-label>Logout</ion-label>
+                          </ion-item>
+                        </ion-menu-toggle>
+                        <ion-menu-toggle>
+                            <ion-item lines="none" (click)="onBrand()" button>
+                              <ion-icon name="exit" slot="start"></ion-icon>
+                              <ion-label>brand</ion-label>
+                            </ion-item>
+                          </ion-menu-toggle>
+                          <ion-menu-toggle>
+                              <ion-item lines="none" (click)="onprice()" button>
+                                <ion-icon name="exit" slot="start"></ion-icon>
+                                <ion-label>price</ion-label>
+                              </ion-item>
+                            </ion-menu-toggle>
+                            <ion-menu-toggle>
+                                <ion-item lines="none" (click)="onweight()" button>
+                                  <ion-icon name="exit" slot="start"></ion-icon>
+                                  <ion-label>weight</ion-label>
+                                </ion-item>
+                              </ion-menu-toggle>
+                              <ion-menu-toggle>
+                                  <!-- <ion-item lines="none" (click)="tryNew()" > -->
+                                    <!-- <ion-icon name="business" slot="start"></ion-icon> -->
+                                    <!-- <ion-label>tryNew</ion-label> -->
+                                    <ion-item class="multiselect">
+                                        <div class="selectBox"  onclick="showCheckboxes()">
+                                          <select>
+                                            <option>Select an option</option>
+                                          </select>
+                                          <div class="overSelect"></div>
+                                        </div>
+                                        <div id="checkboxes">
+                                          <label for="one">
+                                            <input type="checkbox" id="one" />First checkbox</label>
+                                          <label for="two">
+                                            <input type="checkbox" id="two" />Second checkbox</label>
+                                          <label for="three">
+                                            <input type="checkbox" id="three" />Third checkbox</label>
+                                        </div>
+                                      
+                                  </ion-item>
+                                </ion-menu-toggle>
+                      </ion-list>
+        </ion-content>
+      </ion-menu>
+      
+      <ion-nav #mycontent [root]="rootPage"></ion-nav>
+<!-- </ion-split-pane> -->
+      
+<app-search></app-search>

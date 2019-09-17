@@ -1,0 +1,50 @@
+
+<ion-header>
+  <ion-navbar>
+    <ion-title>sortItems</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding> 
+    
+   
+    
+      <ion-list>
+        
+             
+              <ion-item *ngFor="let task of range; let i = index" [attr.data-index]="i">
+                
+                <ion-label *ngIf="this.productService.priceMatch.length === 0 ; 
+                else checkedData">{{ task }} 
+                <ion-checkbox  (ionChange)="checked($event, task)" ></ion-checkbox>
+              </ion-label>
+                
+                 <!-- <ion-label *ngIf="this.productService.minPrice ==0
+                && this.productService.maxPrice == 10000; 
+                else checkedData">{{ task }} 
+                <ion-checkbox  (ionChange)="checked($event, task)" ></ion-checkbox>
+              </ion-label>  -->
+                
+              
+              <ng-template #checkedData>
+                <ion-label *ngIf="this.productService.priceMatch.includes(task); else uncheckedData" >{{ task }}
+                <ion-checkbox  (ionChange)="checked($event, task)" checked ></ion-checkbox></ion-label>
+              <ng-template #uncheckedData>
+                    <ion-label>{{ task }}
+                    <ion-checkbox (ionChange)="checked($event, task)" ></ion-checkbox></ion-label>
+              </ng-template>
+                </ng-template>
+            </ion-item>
+  
+
+         
+
+        </ion-list>
+
+        <button ion-button type="submit" expand="full" color="primary" (click)="onSubmit()">applynow</button>
+        
+ </ion-content>
+    
+      
+      
+    
