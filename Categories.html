@@ -1,0 +1,46 @@
+<ion-header>
+  <div class="top-bar">
+  </div>
+  <ion-navbar hideBackButton >
+    <ion-row>
+		<ion-col col-2>
+		<button ion-button menuToggle >
+		  <ion-icon name="menu"></ion-icon>
+		</button>	
+		</ion-col>
+		<ion-col col-2>
+			<img src="../assets/imgs/logo.png" class="img-logo img-fluid" (click)="home($event)"/>
+		</ion-col>
+		<ion-col col-4 class="logo-name">SANEEHA</ion-col>
+		<ion-col col-2>
+		  <ion-icon name="person" color="Shrungi" (click)="showLogin($event)"></ion-icon>
+     </ion-col>
+    
+		 <ion-col col-2>
+      <ion-icon name="cart" color="Shrungi" (click)="showCart($event)"></ion-icon>
+      <ion-icon color="danger" id="cart-badge">{{cartCount}}</ion-icon>
+
+	  </ion-col> 
+    </ion-row>
+  </ion-navbar>
+  
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
+      <ion-icon name="{{item.icon}}" item-left></ion-icon>
+      {{item.title}} 
+      <ion-thumbnail slot="end" height=10 width=10> 
+          <img [src]="item.image">
+        </ion-thumbnail>
+
+
+      <div class="item-note" item-right>
+        {{item.note}}
+      <!-- </ion-card-content> 
+    </ion-card> -->
+      </div>
+    </button>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,108 @@
+<ion-header>
+    <div class="top-bar">
+    </div>
+    <ion-navbar hideBackButton >
+      <ion-row>
+      <ion-col col-2>
+      <button ion-button menuToggle >
+        <ion-icon name="menu"></ion-icon>
+      </button>	
+      </ion-col>
+      <ion-col col-2>
+        <img src="../assets/imgs/logo.png" class="img-logo img-fluid" (click)="home($event)"/>
+      </ion-col>
+      <ion-col col-4 class="logo-name">SANEEHA</ion-col>
+      <ion-col col-2>
+        <ion-icon name="person" color="Shrungi" (click)="showLogin($event)"></ion-icon>
+       </ion-col>
+       <ion-col col-2>
+      <!-- <button id="cart-btn" ion-button icon-only slot="end"> -->
+  
+        <ion-icon name="cart" color="Shrungi" (click)="showCart($event)"></ion-icon>
+        <div *ngIf="this.cartCount;">
+          <ion-icon color="danger" id="cart-badge">{{cartCount}}</ion-icon>	
+        </div>
+  
+       </ion-col>
+       <!-- <ion-text color="success" id="cart-badge">{{cartCount}}</ion-text>  -->
+        
+  <!-- </ion-button> -->
+      </ion-row>
+  </ion-navbar>
+  </ion-header>
+
+
+<ion-content padding>
+    <div>
+        <ion-item>
+            <ion-range dualKnobs="true" pin="true"  min={{this.general.minPrice}} [max]="this.general.maxPrice" 
+            (ionChange)="PriceChange($event, rangeObject)"
+             [(ngModel)]="rangeObject" color="secondary">
+                <ion-label range-left>Rs.{{this.general.minPrice}}
+                </ion-label>
+                <ion-label range-right>Rs.{{this.general.maxPrice}}</ion-label>
+                </ion-range> 
+          </ion-item>  
+    </div>    
+
+  <!-- checkbox for brand -->
+  <div>
+      <ion-list>
+          <ion-label *ngIf="!posts || posts.length === 0">  <p>No Brands</p>
+          </ion-label>
+           <ion-item *ngFor="let task of posts">
+               <ion-label *ngIf="this.brandMatch.length === 0; 
+               else checkedData">
+                <ion-label *ngIf="task === ''; else emptyData">Empty Brand
+          <ion-checkbox  (ionChange)="checkedBrand($event, task)" ></ion-checkbox>
+        </ion-label></ion-label>
+        <ng-template #emptyData>
+            <ion-label>
+               {{task}}
+               <ion-checkbox  (ionChange)="checkedBrand($event, task)" ></ion-checkbox>
+            </ion-label>
+          </ng-template>
+             <ng-template #checkedData>
+               <ion-label *ngIf="this.brandMatch.includes(task); else uncheckedData" > 
+                 
+                  <ion-label *ngIf="task === ''; else emptyData">Empty Brand
+                      <ion-checkbox  (ionChange)="checkedBrand($event, task)" checked ></ion-checkbox>
+                    </ion-label></ion-label>
+                    <ng-template #emptyData>
+                        <ion-label>
+                           {{task}}
+                           <ion-checkbox  (ionChange)="checkedBrand($event, task)" checked></ion-checkbox>
+                        </ion-label>
+                      </ng-template>
+             <ng-template #uncheckedData>
+                <ion-label *ngIf="task === ''; else emptyData">Empty Brand
+                    <ion-checkbox  (ionChange)="checkedBrand($event, task)"  ></ion-checkbox>
+                  </ion-label>
+                  <ng-template #emptyData>
+                      <ion-label>
+                         {{task}}
+                         <ion-checkbox  (ionChange)="checkedBrand($event, task)" ></ion-checkbox>
+                      </ion-label>
+                    </ng-template>
+
+                   <!-- <ng-template  *ngIf="!AllItems || AllItems.length === 0">
+                      <p>No Brands</p>
+                      </ng-template> -->
+                     </ng-template>
+               </ng-template>
+           </ion-item>
+     </ion-list>
+    </div>
+
+   <!-- brand checkbox end -->
+</ion-content>
+
+<ion-footer>
+<ion-toolbar>
+<div class="align-center">
+<button ion-button class="brands" color="Shrungi" (click)="ApplyBrands($event)">Apply Now</button>
+<button  ion-button class="brands" color="Shrungi" (click)="resetAll()">clear</button>
+<button  ion-button class="brands" color="Shrungi" (click)="goBackVendorDetails()">back</button>
+</div>
+</ion-toolbar>
+</ion-footer>

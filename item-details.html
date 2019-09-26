@@ -1,0 +1,95 @@
+<ion-header>
+  <div class="top-bar">
+  </div>
+  <ion-navbar hideBackButton>
+    <ion-row>
+		<ion-col col-2>
+		<button ion-button menuToggle >
+		  <ion-icon name="menu"></ion-icon>
+		</button>	
+		</ion-col>
+		<ion-col col-2>
+			<img src="../assets/imgs/logo.png" class="img-logo img-fluid" (click)="home($event)"/>
+		</ion-col>
+		<ion-col col-4 class="logo-name">SANEEHA</ion-col>
+		<ion-col col-2>
+		  <ion-icon name="person" color="Shrungi" (click)="showLogin($event)"></ion-icon>
+		 </ion-col>
+		 <ion-col col-2>
+		  <ion-icon name="cart" color="Shrungi" (click)="showCart($event)"></ion-icon>
+		  <div *ngIf="this.cartCount;">
+				<ion-icon color="danger" id="cart-badge">{{cartCount}}</ion-icon>	
+		  </div>
+
+		 </ion-col>
+    </ion-row>
+  </ion-navbar>
+  
+</ion-header>
+<ion-content>
+	<ion-searchbar placeholder="Search Accross All Vendors"
+                 debounce="500"
+	  
+	  [(ngModel)]="myInput"
+	  [showCancelButton]="shouldShowCancel"	  
+	  (keyup.enter)="onInput($event)"
+	  (ionCancel)="onCancel($event)">
+	</ion-searchbar>
+	<div>
+	<button ion-button color="Shrungi" slot="start" (click)="gofilterpage($event)">Filter</button>
+	<button ion-button color="Shrungi" slot="start" (click)="resetFilter($event)">Reset</button>
+</div>
+	<h3 text-center *ngIf="selec-tedItem">
+    {{selectedItem.title}}
+    <ion-icon [name]="selectedItem.icon"></ion-icon>
+  </h3>
+  
+  <ion-row >
+	<ion-col *ngFor="let product of products" col-12>
+		<div class="product-border">
+		<ion-row>
+		  
+		  <ion-col col-6>
+			<img src={{product.url}} class=" img-detail center  img-fluid" onerror="this.src='../assets/imgs/alt_image.jpg'"/>
+		  </ion-col>
+		  <ion-col col-6>
+			<h6>
+			  {{product.name}}
+			  </h6>
+			  <div *ngIf="product.veg_non_veg === 'Veg'; else elseBlock">
+					<img src="../assets/imgs/veg.png"   height="16px" width="16px" >
+				</div>
+					   <ng-template #elseBlock>
+						 <div *ngIf="product.veg_non_veg === 'Non-Veg';">
+								<img height="16px" width="16px" src="../assets/imgs/nonveg.png">
+						   </div>
+						</ng-template>
+				<br>
+			<p class="font-small">
+			  {{product.description}} <br>
+			  {{product.weight}} {{product.uom}} <br />
+			  MRP:{{product.price }}
+			  
+			</p>
+			<button ion-button color="Shrungi" (click)="ViewProduct($event,product)">View Details</button>
+		  </ion-col>
+		  
+		</ion-row>
+		</div>
+	</ion-col>
+  </ion-row>
+  
+	<ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+	   <ion-infinite-scroll-content></ion-infinite-scroll-content>
+	 </ion-infinite-scroll>
+  
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+	<div class="align-center">
+		<button ion-button class="checkout" color="Shrungi" (click)="checkout($event)">Checkout</button>
+	</div>
+  </ion-toolbar>
+</ion-footer>
+
